@@ -1,0 +1,28 @@
+version: '3.8'       # Define the version of the Docker Compose file format
+
+services: 
+  redis:
+    image: redis:7
+    container_name:  redis
+    ports:
+      - "6379:6379"   # Map host port 6379 to container port 6379 (default for Redis)
+
+  api-service:
+    build: 
+      context: ./services/api-service   # Builds Dockerfile from this path
+    container_name: api-service
+    ports:
+      - "3001:3001"   # Map host port 3001 to container port 3001
+    depends_on:
+      - redis         # Make sure redis container starts before this one
+    environment:
+      - PORT=3001     # Set environment variable for the API service  
+
+  redirect-service:
+    build:
+      context: ./services/redirect-service
+    container_name: redirect-service
+    ports:
+      - "3002:3002"
+    depends_on:
+      - redis
