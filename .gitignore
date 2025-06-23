@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+pnpm-lock.yaml
+
+# Build output
+dist/
+build/
+
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Docker artifacts
+*.local
+*.pid
+*.seed
+*.bak
+
+# IDE and OS-specific files
+.DS_Store
+.vscode/
+.idea/
