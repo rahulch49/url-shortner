@@ -12,7 +12,8 @@ This is a simple and scalable URL shortener built using **Node.js**, **TypeScrip
 - **Docker + Docker Compose** – to run services in isolated containers
 - **PNPM** – for faster dependency management
 
-⚙️ How to Run the Project
+⚙️ How to Run the Project:
+
 Make sure you have Docker installed. Then:
 
 1. Clone the repo:
@@ -30,7 +31,8 @@ Make sure you have Docker installed. Then:
 
     Redirect service on http://localhost:3002
 
-🔍 How It Works
+🔍 How It Works:
+
 ➕ Shorten a URL
     Send a POST request to the API:
 
