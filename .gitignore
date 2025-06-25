@@ -2,6 +2,10 @@
 node_modules/
 pnpm-lock.yaml
 
+.pnpm/
+.pnpm-store/
+coverage/
+
 # Build output
 dist/
 build/
