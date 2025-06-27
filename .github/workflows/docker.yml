@@ -1,0 +1,32 @@
+name: Docker CI
+
+on: 
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.job
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Build API Docker image
+        working-directory: services/api-service
+        run: docker build -t api-service .
+
+      - name: Build Redirect Docker image
+        working-directory: services/redirect-service
+        run: docker build -t redirect-service .
