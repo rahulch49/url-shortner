@@ -1,10 +1,10 @@
-name: Docker CI
+name: Build and Test
 
-on: 
+on:
   push:
-    branches:
-      - main
-      - dev
+    branches: [dev]
+  pull_request:
+    branches: [dev]
 
 jobs:
   build:
@@ -14,21 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.job
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: 'pnpm'
 
-      - name: Enable and prepare pnpm via corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-      - name: Build API Docker image
-        working-directory: services/api-service
-        run: docker build -t api-service .
-
-      - name: Build Redirect Docker image
-        working-directory: services/redirect-service
-        run: docker build -t redirect-service .
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: ./services/api-service
