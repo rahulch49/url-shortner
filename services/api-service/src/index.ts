@@ -6,10 +6,9 @@ import { logger } from './logger';
 
 const app = express();
 const port = 3001;
-const redis = new Redis({
-    host: 'redis',
-    port: 6379,
-});
+const redis = new Redis(
+    process.env.REDIS_URL! // Ensure REDIS_URL is set in your environment variables
+);
 app.use(express.json());
 app.post('/shorten', async (req: Request, res: Response) => {
     const MAX_EXPIRY = 7 * 24 * 60 * 60; // 7 days
