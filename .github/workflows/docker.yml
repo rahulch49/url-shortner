@@ -25,3 +25,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         working-directory: ./services/api-service
+
+      - name: Build api-service
+        run: pnpm tsc
+        working-directory: ./services/api-service
+
+      - name: Build redirect-service
+        run: pnpm tsc
+        working-directory: ./services/redirect-service
+
