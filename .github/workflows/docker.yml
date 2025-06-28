@@ -38,3 +38,23 @@ jobs:
         run: pnpm tsc
         working-directory: ./services/redirect-service
 
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Build and push api-service image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/api-service
+          push: true
+          tags: rahulch49/url-shortner-api-service:latest
+
+      - name: Build and push redirect-service image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/redirect-service
+          push: true
+          tags: rahulch49/url-shortner-redirect-service:latest
+
