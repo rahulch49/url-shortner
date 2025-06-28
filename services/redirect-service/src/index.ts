@@ -5,10 +5,9 @@ import { logger } from './logger';
 const app = express();
 const port = 3002;
 
-const redis = new Redis({
-  host: 'redis',
-  port: 6379,
-});
+const redis = new Redis(
+  process.env.REDIS_URL! // Ensure REDIS_URL is set in your environment variables);
+ );
 
 app.get('/:shortId', async (req: Request, res: Response) => {
   const { shortId } = req.params;
