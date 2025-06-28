@@ -3,13 +3,16 @@ import { error } from 'console';
 import Redis from 'ioredis';
 import { nanoid } from 'nanoid';
 import { logger } from './logger';
-
+import dotenv from 'dotenv';
+dotenv.config();
+import { apiKeyAuth } from './middleware/apiKeyAuth';
 const app = express();
 const port = 3001;
 const redis = new Redis(
     process.env.REDIS_URL! // Ensure REDIS_URL is set in your environment variables
 );
 app.use(express.json());
+app.use(apiKeyAuth);
 app.post('/shorten', async (req: Request, res: Response) => {
     const MAX_EXPIRY = 7 * 24 * 60 * 60; // 7 days
     const ip = req.ip;
