@@ -49,12 +49,12 @@ jobs:
         with:
           context: ./services/api-service
           push: true
-          tags: rahulch49/url-shortner-api-service:latest
+          tags: kuberahul0111/url-shortner-api-service:latest
 
       - name: Build and push redirect-service image
         uses: docker/build-push-action@v5
         with:
           context: ./services/redirect-service
           push: true
-          tags: rahulch49/url-shortner-redirect-service:latest
+          tags: kuberahul0111/url-shortner-redirect-service:latest
 
